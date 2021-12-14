@@ -1,0 +1,35 @@
+plugins {
+    id 'com.android.library'
+    id 'kotlin-android'
+}
+
+android {
+    compileSdkVersion 11
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+    lintOptions {
+        abortOnError false
+    }
+}
+
+task prepareJar(type: Copy,dependsOn: build) {
+    File processAarFile = new File(project.buildDir, "intermediates/aar_main_jar/release/classes.jar")
+    File workDir = new File(project.buildDir, "intermediates/aar_main_jar/release/workDir")
+    if (workDir.exists()) workDir.deleteDir()
+    from zipTree(processAarFile)
+    into workDir
+    doLast {
+        new File(workDir, "com/sens/widget/BuildConfig.class").delete()
+    }
+}
+
+task jar(type: Jar, dependsOn: prepareJar) {
+    delete 'build/libs/ClipLayout.jar'
+    from 'build/intermediates/aar_main_jar/release/workDir'
+    destinationDir file('build/libs')
+}

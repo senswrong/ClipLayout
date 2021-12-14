@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.sens.widget.ClipLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="200dp"
+    android:layout_height="200dp"
+    android:layout_gravity="center"
+    android:layout_marginTop="30dp">
+
+    <com.sens.widget.ClipMask
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/oval" />
+
+    <View
+        android:id="@+id/yin"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/sens" />
+
+    <com.sens.widget.ClipMask
+        android:id="@+id/yinyang"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/yinyang" />
+
+    <View
+        android:id="@+id/yang"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/nezha" />
+</com.sens.widget.ClipLayout>

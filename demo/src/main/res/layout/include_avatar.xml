@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.sens.widget.ClipLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="91.5dp"
+    android:layout_height="91.5dp"
+    android:layout_gravity="center_horizontal"
+    android:layout_marginTop="10dp"
+    tools:ignore="MissingDefaultResource">
+
+    <View
+        android:id="@+id/background"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/border_avatar_anim" />
+
+    <com.sens.widget.ClipMask
+        android:id="@+id/avm1"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="5dp"
+        android:background="@drawable/clip_avatar_anim" />
+
+    <View
+        android:id="@+id/avatar"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="5dp"
+        android:background="@drawable/sens" />
+
+    <com.sens.widget.ClipMask
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal|bottom"
+            android:layout_marginBottom="8dp"
+            android:text="SENS"
+            android:textColor="@android:color/black"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+    </com.sens.widget.ClipMask>
+</com.sens.widget.ClipLayout>

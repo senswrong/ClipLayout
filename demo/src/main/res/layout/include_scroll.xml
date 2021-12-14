@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.sens.widget.ClipLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="120dp"
+    android:layout_height="120dp"
+    android:layout_gravity="center_horizontal"
+    tools:ignore="MissingDefaultResource">
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/ic_hart" />
+
+    <com.sens.widget.ClipMask
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="2dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="2dp"
+        android:layout_marginBottom="2dp"
+        android:background="@drawable/ic_hart" />
+
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/sens" />
+
+    <com.sens.widget.ClipMask
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="2dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="2dp"
+        android:layout_marginBottom="2dp">
+
+        <HorizontalScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:overScrollMode="never"
+            android:scrollbars="none">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:background="#1000"
+                android:gravity="center_vertical"
+                android:singleLine="true"
+                android:text="@string/no_bug"
+                android:textColor="@android:color/black"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+        </HorizontalScrollView>
+    </com.sens.widget.ClipMask>
+</com.sens.widget.ClipLayout>
