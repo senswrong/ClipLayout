@@ -12,14 +12,11 @@
         android:background="@drawable/ic_hart" />
 
     <com.sens.widget.ClipMask
+        android:id="@+id/hart"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginLeft="2dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginRight="2dp"
-        android:layout_marginBottom="2dp"
+        android:layout_marginTop="5dp"
         android:background="@drawable/ic_hart" />
-
 
     <View
         android:layout_width="match_parent"
@@ -48,7 +45,7 @@
                 android:background="#1000"
                 android:gravity="center_vertical"
                 android:singleLine="true"
-                android:text="@string/no_bug"
+                android:text="@string/scroll"
                 android:textColor="@android:color/black"
                 android:textSize="18sp"
                 android:textStyle="bold" />

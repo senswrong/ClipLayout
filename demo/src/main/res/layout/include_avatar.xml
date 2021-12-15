@@ -11,14 +11,14 @@
         android:id="@+id/background"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@drawable/border_avatar_anim" />
+        android:background="@drawable/border_avatar_lignt" />
 
     <com.sens.widget.ClipMask
         android:id="@+id/avm1"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_margin="5dp"
-        android:background="@drawable/clip_avatar_anim" />
+        android:background="@drawable/clip_avatar_lignt" />
 
     <View
         android:id="@+id/avatar"

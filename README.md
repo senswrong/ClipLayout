@@ -18,13 +18,19 @@
 
 ![image](./out/circle_border.png)
 
-### 你又遇到过怎样的布局裁切需求？
+### 你又遇到过怎样奇怪的布局需求？
 
-#### 1. 圆形布局
+#### 1. 异形布局
+
+![image](./out/special.png)
 
 #### 2. 阴阳布局
 
-#### 3. 或者心形布局
+![image](./out/yinyang.png)
+
+#### 3. 还是心形布局
+
+![image](./out/hart.png)
 
 所有这些，都可以用一个**ClipLayout**布局搞定
 
@@ -109,6 +115,10 @@ Include_circle_border.xml
 200行你用不了吃亏，也用不了上当，走过路过，**点赞收藏+关注**。
 
 **如果你想了解更多的实现原理，可直奔gay站看代码，也可以给我留言。**
+
+下面是一个使用**ClipLayout**制作的综合样例，喜欢请扫码进入gay站吧。
+
+![image](./out/ticket.png)
 
 项目地址:[请前往gay站](https://github.com/senswrong/ClipLayout)
 

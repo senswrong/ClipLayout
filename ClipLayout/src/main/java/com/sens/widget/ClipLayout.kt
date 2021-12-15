@@ -47,16 +47,30 @@ class ClipLayout @JvmOverloads constructor(
         paint, Canvas.ALL_SAVE_FLAG
     )
 
-    private fun Bitmap.clipBackground(canvas: Canvas) {
+    private fun Bitmap.makeHole(canvas: Canvas) {
         paint.xfermode = PorterDuffXfermode(PorterDuff.Mode.DST_OUT)
         canvas.drawBitmap(this, 0f, 0f, paint)
         paint.xfermode = null
     }
 
-    private fun Bitmap.clipContent(canvas: Canvas) {
+    private fun Bitmap.clipCut(canvas: Canvas) {
         paint.xfermode = PorterDuffXfermode(PorterDuff.Mode.DST_IN)
         canvas.drawBitmap(this, 0f, 0f, paint)
         paint.xfermode = null
+    }
+
+    private fun Bitmap.makeHole(bitmap: Bitmap) {
+        for (x in 0 until width)
+            for (y in 0 until height)
+                if (getPixel(x, y) != 0)
+                    bitmap.setPixel(x, y, 0)
+    }
+
+    private fun Bitmap.clipCut(bitmap: Bitmap) {
+        for (x in 0 until width)
+            for (y in 0 until height)
+                if (getPixel(x, y) == 0)
+                    bitmap.setPixel(x, y, 0)
     }
 
     private var zeroPixels: IntArray? = null
@@ -68,7 +82,7 @@ class ClipLayout @JvmOverloads constructor(
     override fun dispatchDraw(canvas: Canvas) {
         canvas.saveLayer()
         super.dispatchDraw(canvas)
-        mask?.apply { if (isReversal) clipBackground(canvas) else clipContent(canvas) }
+        mask?.apply { if (isReversal) makeHole(canvas) else clipCut(canvas) }
         lastAlpha = null
     }
 
@@ -77,24 +91,42 @@ class ClipLayout @JvmOverloads constructor(
     override fun drawChild(canvas: Canvas, child: View, drawingTime: Long) =
         if (child is ClipMask) {
             initMask(canvas.width, canvas.height)
-
-            lastAlpha?.apply { if (isReversal) clipBackground(canvas) else clipContent(canvas) }
             mask?.apply {
                 if (zeroPixels != null) setPixels(zeroPixels, 0, width, 0, 0, width, height)
                 super.drawChild(Canvas(this), child, drawingTime)
-                lastAlpha = copy(
-                    if (Build.VERSION.SDK_INT < 20)
-                        Bitmap.Config.ARGB_4444
-                    else
-                        Bitmap.Config.ALPHA_8, false
-                ).apply {
-                    if (isReversal) clipContent(canvas) else clipBackground(canvas)
+            }
+            lastAlpha?.apply {
+                if (isReversal) {
+                    makeHole(Canvas(mask!!))
+                    makeHole(canvas)
+                } else {
+                    clipCut(Canvas(mask!!))
+                    clipCut(canvas)
                 }
+            }
+            getMask(child).apply {
+                Canvas(this).drawBitmap(mask!!, 0f, 0f, null)
+                if (isReversal) clipCut(canvas) else makeHole(canvas)
                 canvas.saveLayer()
-                child.setTag(lastAlpha)//save Alpha for dispatchTouchEvent
+                lastAlpha = this
             }
             false
         } else super.drawChild(canvas, child, drawingTime)
+
+    private fun getMask(child: View): Bitmap {
+        var alpha = child.tag as Bitmap?
+        if (alpha == null) {
+            alpha = Bitmap.createBitmap(
+                width, height,
+                if (Build.VERSION.SDK_INT < 20)
+                    Bitmap.Config.ARGB_4444
+                else
+                    Bitmap.Config.ALPHA_8
+            )
+            child.tag = alpha//save Alpha for dispatchTouchEvent
+        } else alpha.setPixels(zeroPixels, 0, width, 0, 0, width, height)
+        return alpha!!
+    }
 
     private fun initMask(width: Int, height: Int) {
         if (mask == null || mask!!.width != width || mask!!.height != height)
@@ -114,9 +146,8 @@ class ClipLayout @JvmOverloads constructor(
     override fun dispatchTouchEvent(event: MotionEvent): Boolean {
         if (event.action != MotionEvent.ACTION_DOWN) return super.dispatchTouchEvent(event)
         maskAt = -1
-        for (i in childCount - 1 downTo 0) {
+        for (i in 0 until childCount) {
             val child = getChildAt(i)
-            var findUseMask = false
             if (child is ClipMask) {
                 child.getTag()?.also {
                     if (it is Bitmap)
@@ -125,11 +156,10 @@ class ClipLayout @JvmOverloads constructor(
                                 event.x.toInt() in 0 until width && event.y.toInt() in 0 until height
                                 && getPixel(event.x.toInt(), event.y.toInt()) == 0
                             ) maskAt = i
-                            else findUseMask = true
                         }
                 }
             }
-            if (findUseMask) break
+            if (maskAt != -1) break
         }
 
         if (Build.VERSION.SDK_INT <= 15 && maskAt != -1)

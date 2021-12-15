@@ -1,13 +1,9 @@
 package com.sens
 
 import android.app.Activity
-import android.graphics.drawable.Animatable
-import android.graphics.drawable.AnimationDrawable
 import android.os.Bundle
 import android.view.View
-import android.view.animation.Animation
-import android.view.animation.LinearInterpolator
-import android.view.animation.RotateAnimation
+import android.view.animation.*
 import android.widget.TextView
 import android.widget.Toast
 
@@ -28,8 +24,6 @@ class MainActivity : Activity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        (findViewById(R.id.background).background as AnimationDrawable).start()
-        (findViewById(R.id.avm1).background as Animatable).start()
         findViewById(R.id.background).apply {
             setOnClickListener(object : View.OnClickListener {
                 override fun onClick(v: View?) {
@@ -87,6 +81,21 @@ class MainActivity : Activity() {
             repeatCount = Animation.INFINITE
             fillAfter = true
             interpolator = LinearInterpolator()
+        })
+
+        findViewById(R.id.hart).startAnimation(ScaleAnimation(
+            1.1f, 0.8f,
+            1.1f, 0.8f,
+            Animation.RELATIVE_TO_SELF,
+            0.5f,
+            Animation.RELATIVE_TO_SELF,
+            0.5f
+        ).apply {
+            duration = 1000
+            repeatCount = Animation.INFINITE
+            repeatMode = Animation.REVERSE
+            fillAfter = true
+            interpolator = AccelerateDecelerateInterpolator()
         })
     }
 }

@@ -1,59 +1,87 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@drawable/background">
 
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:paddingTop="10dp"
-        android:paddingBottom="10dp">
+        android:layout_height="match_parent"
+        android:overScrollMode="never"
+        android:scrollbars="none">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:text="click any you like !!!"
-            android:textColor="@android:color/white"
-            android:textStyle="bold" />
-
-        <TextView
-            android:id="@+id/hint"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="10dp"
-            android:background="@android:color/white"
-            android:gravity="center"
-            android:singleLine="true"
-            android:text="TOAST"
-            android:textColor="#F24D1F" />
+            android:orientation="vertical"
+            android:paddingTop="20dp"
+            android:paddingBottom="10dp">
 
-        <include layout="@layout/include_avatar" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="10dp"
+                android:text="Simple !!!"
+                android:textColor="@android:color/white"
+                android:textStyle="bold" />
 
-        <include layout="@layout/include_name" />
+            <include layout="@layout/include_round_rectangle" />
 
-        <include layout="@layout/include_yinyang" />
+            <include layout="@layout/include_round_rectangle_border" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="10dp"
-            android:text="Scroll !!!"
-            android:textColor="@android:color/white"
-            android:textStyle="bold" />
+            <include layout="@layout/include_circle" />
 
-        <include layout="@layout/include_scroll" />
+            <include layout="@layout/include_circle_border" />
 
-        <include layout="@layout/include_round_rectangle" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="10dp"
+                android:text="click any you like !!!"
+                android:textColor="@android:color/white"
+                android:textStyle="bold" />
 
-        <include layout="@layout/include_round_rectangle_border" />
+            <include layout="@layout/include_avatar" />
 
-        <include layout="@layout/include_circle" />
+            <include layout="@layout/include_name" />
 
-        <include layout="@layout/include_circle_border" />
+            <include layout="@layout/include_yinyang" />
 
-    </LinearLayout>
-</ScrollView>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="10dp"
+                android:text="Scroll !!!"
+                android:textColor="@android:color/white"
+                android:textStyle="bold" />
+
+            <include layout="@layout/include_scroll" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="10dp"
+                android:text="Scan !!!"
+                android:textColor="@android:color/white"
+                android:textStyle="bold" />
+
+            <include layout="@layout/include_ticket" />
+
+        </LinearLayout>
+    </ScrollView>
+
+    <TextView
+        android:id="@+id/hint"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:background="@android:color/white"
+        android:gravity="center"
+        android:singleLine="true"
+        android:text="TOAST"
+        android:textColor="#F24D1F" />
+</FrameLayout>
