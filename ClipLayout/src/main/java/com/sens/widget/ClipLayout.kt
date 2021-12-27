@@ -115,7 +115,7 @@ class ClipLayout @JvmOverloads constructor(
 
     private fun getMask(child: View): Bitmap {
         var alpha = child.tag as Bitmap?
-        if (alpha == null) {
+        if (alpha == null || alpha.width != width || alpha.height != height) {
             alpha = Bitmap.createBitmap(
                 width, height,
                 if (Build.VERSION.SDK_INT < 20)
