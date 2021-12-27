@@ -129,7 +129,7 @@ class ClipLayout @JvmOverloads constructor(
     }
 
     private fun initMask(width: Int, height: Int) {
-        if (mask == null || mask!!.width != width || mask!!.height != height)
+        if (mask == null || mask!!.width != width || mask!!.height != height) {
             mask = Bitmap.createBitmap(
                 width, height,
                 if (Build.VERSION.SDK_INT < 20)
@@ -137,7 +137,8 @@ class ClipLayout @JvmOverloads constructor(
                 else
                     Bitmap.Config.ALPHA_8
             )
-        else if (zeroPixels == null || zeroPixels!!.size != width * height)
+            if (zeroPixels != null) zeroPixels = IntArray(width * height)
+        } else if (zeroPixels == null || zeroPixels!!.size != width * height)
             zeroPixels = IntArray(width * height)
     }
 
