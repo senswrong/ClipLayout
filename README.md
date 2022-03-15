@@ -122,6 +122,6 @@ Include_circle_border.xml
 
 项目地址:[请前往gay站](https://github.com/senswrong/ClipLayout)
 
-体验APK:[点击下载](https://github.com/senswrong/ClipLayout/raw/master/out/demo-debug.apk)
+体验APK:[点击下载](https://github.com/senswrong/ClipLayout/raw/master/out/demo.apk)
 
 jar包：[点击下载](https://github.com/senswrong/ClipLayout/raw/master/demo/libs/ClipLayout.jar)
