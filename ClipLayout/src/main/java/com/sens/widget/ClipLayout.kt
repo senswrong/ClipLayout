@@ -124,7 +124,10 @@ class ClipLayout @JvmOverloads constructor(
                     Bitmap.Config.ALPHA_8
             )
             child.tag = alpha//save Alpha for dispatchTouchEvent
-        } else alpha.setPixels(zeroPixels, 0, width, 0, 0, width, height)
+        } else {
+            if (zeroPixels == null) zeroPixels = IntArray(width * height)
+            alpha.setPixels(zeroPixels, 0, width, 0, 0, width, height)
+        }
         return alpha!!
     }
 
