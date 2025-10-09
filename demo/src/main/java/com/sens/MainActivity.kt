@@ -2,8 +2,11 @@ package com.sens
 
 import android.app.Activity
 import android.os.Bundle
-import android.view.View
-import android.view.animation.*
+import android.view.animation.AccelerateDecelerateInterpolator
+import android.view.animation.Animation
+import android.view.animation.LinearInterpolator
+import android.view.animation.RotateAnimation
+import android.view.animation.ScaleAnimation
 import android.widget.TextView
 import android.widget.Toast
 
@@ -25,48 +28,27 @@ class MainActivity : Activity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         findViewById(R.id.background).apply {
-            setOnClickListener(object : View.OnClickListener {
-                override fun onClick(v: View?) {
-                    toast("bg")
-                }
-            })
+            setOnClickListener { toast("bg") }
         }
         findViewById(R.id.avm1).apply {
-            setOnClickListener(object : View.OnClickListener {
-                override fun onClick(v: View?) {
-                    toast("mask")
-                }
-            })
+            setOnClickListener { toast("mask") }
         }
         findViewById(R.id.avatar).apply {
-            setOnClickListener(object : View.OnClickListener {
-                override fun onClick(v: View?) {
-                    toast("avatar")
-                }
-            })
+            setOnClickListener { toast("avatar") }
         }
         findViewById(R.id.name).apply {
-            setOnClickListener(object : View.OnClickListener {
-                override fun onClick(v: View?) {
-                    toast("SENS")
-                }
-            })
+            setOnClickListener { toast("SENS") }
         }
 
         findViewById(R.id.yin).apply {
-            setOnClickListener(object : View.OnClickListener {
-                override fun onClick(v: View?) {
-                    toast("Sens")
-                }
-            })
+            setOnClickListener { toast("Sens") }
         }
 
         findViewById(R.id.yang).apply {
-            setOnClickListener(object : View.OnClickListener {
-                override fun onClick(v: View?) {
-                    toast("NeZha")
-                }
-            })
+            setOnClickListener { toast("NeZha") }
+        }
+        findViewById(R.id.yyc).apply {
+            setOnClickListener { toast("BG") }
         }
 
         findViewById(R.id.yinyang).startAnimation(RotateAnimation(
